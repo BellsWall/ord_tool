@@ -1,77 +1,80 @@
-# Bitcoin Ordinals Inscription Tool
 
-This tool is designed to facilitate the creation and management of Ordinals inscriptions on the Bitcoin blockchain using taproot (P2TR) transactions. It leverages the bitcoinjs-lib library to build and sign transactions, specifically focusing on batch minting Ordinals inscriptions.
+# 🎮 Bellscoin Ordinals Inscription Tool 🐉
 
-## Features
+Welcome, brave TypeScript wizards 🧙‍♂️, to the realm of Bellscoin Ordinals! Craft your inscriptions with the magic of taproot (P2TR) transactions.
 
-- Create taproot scripts for Ordinals inscriptions.
-- Create one Commit Transaction and multiple Reveal Transactions
+## 🚀 Features
 
-## Installation
+- ✨ **Craft Taproot Scripts**: Forge inscriptions for Ordinals.
+- 🏰 **Transaction Kingdom**: Create one mighty Commit Transaction and numerous Reveal Transactions.
 
-Before you begin, ensure that you have bun.js installed on your system. Then, install the necessary dependencies by running:
+## 📦 Installation
 
-```bash
-bun install
-```
-
-This will install bitcoinjs-lib, tiny-secp256k1, and other required libraries.
-
-## Usage
-
-### How to run
+Now, install the spellbook from npm:
 
 ```bash
-bun run {your_script}.ts
+npm install @bellswall/ord-tool
 ```
 
-### Workflow
+## 🛠️ Usage
 
-- **Create a Commit Transaction**: Generate a transaction that commits to the inscription.
-- **Sign the Commit Transaction**: Use your wallet or code to sign the transaction.
-- **Post the Commit Transaction**: Broadcast the signed transaction to the blockchain via the Mempool API.
-- **Post Reveal Transactions**: After the commit transaction, broadcast reveal transactions to the blockchain.
+### How to Cast:
 
-### Example
+```bash
+import { OrdTool } from '@bellswall/ord-tool'
+```
 
-For detailed usage, please refer to **example.ts** in the project. Here's a brief overview:
+### Spell Workflow:
 
-```javascript
-// Configure the network and inscription details
-const network = testnet;
+1. **🔮 Commit Spell**: Conjure a transaction that commits to your inscription.
+2. **🖋️ Sign with Your Quill**: Use your wallet or code to sign this magical scroll.
+3. **🌍 Broadcast to the World**: Send your signed commit transaction via the Mempool API.
+4. **🕊️ Reveal the Magic**: After your commit, reveal your inscriptions to the blockchain.
+
+### Example Grimoire:
+
+```typescript
+import { OrdTool, makeKeypairFromWIF } from '@bellswall/ord-tool'
+// Configure your magical network and inscription runes
+const network = 'mainnet'; // or 'mainnet' for the brave
 const config: InscriptionConfig = {
-  // Your configuration details here...
+  // Inscribe your config details here...
 };
 
 const tool = new OrdTool(config);
 
-// adding a private key in WIF (Wallet Import Format) to a .env file
+// Secure your private key in an enchanted .env file
 // WIF=your_private_key_in_WIF_format
 const wif = process.env.WIF;
 const signer = makeKeypairFromWIF(wif, network);
 
-// Generate and sign the commit transaction
+// Generate and sign the commit transaction spell
 let unsignCommitPsbt = await tool.makeUnsignedCommitPsbt();
-// Sign the transaction using your private key or wallet (ensure security practices)
+// Sign with your magical powers or wallet
 // ...
 
-// Broadcast the commit transaction and wait for confirmation
+// Broadcast your spell and await its manifestation
 const commitTransactionId = await tool.postCommitTransaction(signedCommitPsbt);
 console.log("Commit transaction ID:", commitTransactionId);
 await tool.waitUntilTransactionConfirm(commitTransactionId);
 
-// Broadcast the reveal transactions
+// Reveal your inscriptions to the world
 await tool.postRevealTransactions();
 ```
 
-## Security and Best Practices
+## 🔐 Security and Best Practices
 
-- **Secure Handling of Private Keys**: Avoid exposing private keys in your code. Use secure methods like hardware wallets or trusted signing services for transaction signing.
-- **Test on Testnet**: Always test your transactions on the testnet before executing on the mainnet.
-- **Verify and Confirm**: Ensure to verify transaction details and wait for confirmation before proceeding with subsequent steps.
+- **🔒 Key Guardianship**: Never expose your magical keys in code. Use enchanted hardware wallets or trusted spell-signing services.
+- **🧪 Test in the Alchemist's Lab**: Always test on testnet before unleashing on mainnet.
+- **👀 Confirm and Verify**: Double-check your spells and wait for their confirmation.
 
-## Contributions
+## 🤝 Contributions
 
-Contributions to enhance the tool or extend its capabilities are welcome. Please adhere to standard coding practices and provide documentation for your contributions.
+Feel like adding more spells or enhancing our grimoire? Contributions are welcome! Follow the ancient coding scrolls and document your magic.
 
-Follow on [Twitter](https://twitter.com/BitcoinIndexer)
+Follow our journey on [X](https://x.com/BitcoinIndexer) 🐦
+
+Let's make blockchain inscriptions as fun as a barrel of monkeys 🐒! 
+```
+
+This version includes emojis to make the README more engaging and reflects the installation from npm, targeting TypeScript developers in modern web development environments.
