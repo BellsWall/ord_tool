@@ -1,5 +1,6 @@
 import bitcoin from "belcoinjs-lib";
 import { toXOnly } from "belcoinjs-lib/src/psbt/bip371";
+//@ts-ignore
 import { expect, test } from "bun:test";
 import ECPairFactory from "belpair";
 import * as ecc from "bells-secp256k1";
@@ -10,7 +11,7 @@ import {
   makeKeypairFromWIF,
   validateEcdsaSignature,
   validateSchnorrSignature,
-} from ".";
+} from "../src";
 
 const ECPair = ECPairFactory(ecc);
 
