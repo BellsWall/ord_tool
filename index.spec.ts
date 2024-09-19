@@ -1,8 +1,8 @@
-import bitcoin, { initEccLib } from "bitcoinjs-lib";
-import { toXOnly } from "bitcoinjs-lib/src/psbt/bip371";
+import bitcoin from "belcoinjs-lib";
+import { toXOnly } from "belcoinjs-lib/src/psbt/bip371";
 import { expect, test } from "bun:test";
-import ECPairFactory from "ecpair";
-import * as ecc from "tiny-secp256k1";
+import ECPairFactory from "belpair";
+import * as ecc from "bells-secp256k1";
 import {
   InscriptionRequest,
   buildOrdScript,
@@ -11,7 +11,7 @@ import {
   validateEcdsaSignature,
   validateSchnorrSignature,
 } from ".";
-initEccLib(ecc);
+
 const ECPair = ECPairFactory(ecc);
 
 const keypair = ECPair.makeRandom({ network: bitcoin.networks.testnet });

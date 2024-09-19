@@ -1,13 +1,14 @@
-import bitcoin, { Payment, Psbt, script as bscript, initEccLib } from "bitcoinjs-lib";
-import { toXOnly } from "bitcoinjs-lib/src/psbt/bip371";
+import bitcoin, { Payment, Psbt, script as bscript } from "belcoinjs-lib";
+import { toXOnly } from "belcoinjs-lib/src/psbt/bip371";
 
-import { LEAF_VERSION_TAPSCRIPT } from "bitcoinjs-lib/src/payments/bip341";
+import { LEAF_VERSION_TAPSCRIPT } from "belcoinjs-lib/src/payments/bip341";
 
-import * as ecc from "tiny-secp256k1";
-initEccLib(ecc);
+import * as ecc from "bells-secp256k1";
 
-import { Taptree } from "bitcoinjs-lib/src/types";
-import ECPairFactory, { ECPairInterface } from "ecpair";
+import { Taptree } from "belcoinjs-lib/src/types";
+
+import ECPairFactory, { ECPairInterface } from 'belpair'
+
 const ECPair = ECPairFactory(ecc);
 
 // Validator functions for ECDSA and Schnorr signatures
@@ -365,7 +366,7 @@ function buildInscriptionPayment(
 export class MempoolClient {
   url: string;
   constructor(network: bitcoin.networks.Network) {
-    if (network === bitcoin.networks.bitcoin) {
+    if (network === bitcoin.networks.bellcoin) {
       this.url = "https://mempool.space/api/";
       return;
     }
